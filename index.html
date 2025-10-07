@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>stpack Deep Link Test</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #fafafa;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: #007aff;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      a:hover {
+        background: #005fc8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🌐 stpack.github.io</h1>
+    <p>ทดสอบ Deep Link Android ด้วย GitHub Pages</p>
+
+    <!-- ปุ่มนี้ไว้ทดสอบเปิดแอปผ่าน HTTPS -->
+    <a href="https://stpack.github.io/open/profile/123">
+      ทดสอบเปิดลิงก์: https://stpack.github.io/open/profile/123
+    </a>
+
+    <!-- ปุ่มนี้ไว้ทดสอบ Custom Scheme -->
+    <a href="myapp://profile/123">
+      ทดสอบเปิดลิงก์: myapp://profile/123
+    </a>
+  </body>
+</html>
