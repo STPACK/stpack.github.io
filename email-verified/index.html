@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting to HelpYourself app...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      color: #333;
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <p>Redirecting to HelpYourself app...</p>
+  <p>If it doesn’t open automatically, click below:</p>
+  <a id="openApp">Open in HelpYourself App</a>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    const email = params.get("email");
+    const encodedEmail = email ? encodeURIComponent(email) : "";
+    const intentUrl = `intent://email-verified?token=${encodeURIComponent(token)}&email=${encodedEmail}#Intent;scheme=https;package=com.sennalabs.helpyourself;end`;
+    document.getElementById("openApp").href = intentUrl;
+
+    setTimeout(() => {
+      window.location.href = intentUrl;
+    }, 300);
+  </script>
+</body>
+</html>
