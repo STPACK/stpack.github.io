@@ -33,11 +33,7 @@
     const email = params.get("email");
     const encodedEmail = email ? encodeURIComponent(email) : "";
     const intentUrl = `intent://email-verified?token=${encodeURIComponent(token)}&email=${encodedEmail}#Intent;scheme=https;package=com.sennalabs.helpyourself;end`;
-    document.getElementById("openApp").href = intentUrl;
-
-    setTimeout(() => {
-      window.location.href = intentUrl;
-    }, 300);
+    window.location.href = intentUrl;
   </script>
 </body>
 </html>
