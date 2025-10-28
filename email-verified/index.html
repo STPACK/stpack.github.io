@@ -2,38 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Redirecting to HelpYourself app...</title>
+  <title>Opening HelpYourself App...</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
-      font-family: sans-serif;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       text-align: center;
-      padding-top: 50px;
       color: #333;
     }
+    h1 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
     a {
-      display: inline-block;
       margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #007bff;
+      display: inline-block;
+      background-color: #007aff;
       color: white;
+      padding: 10px 20px;
       border-radius: 6px;
       text-decoration: none;
+      font-weight: 500;
+    }
+    .small {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <p>Redirecting to HelpYourself app...</p>
-  <p>If it doesn’t open automatically, click below:</p>
-  <a id="openApp">Open in HelpYourself App</a>
+  <h1>Opening HelpYourself...</h1>
+  <p class="small">If it doesn't open automatically, click the button below:</p>
+  <a id="openAppBtn" href="#">Open HelpYourself App</a>
+  <p class="small">If you don’t have the app installed, nothing will happen.</p>
 
   <script>
+    // === อ่านค่า token และ email จาก query ===
     const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
-    const email = params.get("email");
-    const encodedEmail = email ? encodeURIComponent(email) : "";
-    const intentUrl = `intent://email-verified?token=${encodeURIComponent(token)}&email=${encodedEmail}#Intent;scheme=https;package=com.sennalabs.helpyourself;end`;
-    window.location.href = intentUrl;
+    const token = params.get("token") || "";
+    const email = params.get("email") || "";
+
+    // === เข้ารหัสค่าเพื่อความปลอดภัย ===
+    const encodedToken = encodeURIComponent(token);
+    const encodedEmail = encodeURIComponent(email);
+
+    // === สร้าง intent:// URL ===
+    const intentUrl = `intent://email-verified?token=${encodedToken}&email=${encodedEmail}#Intent;scheme=https;package=com.sennalabs.helpyourself;end`;
+
+    // === ใส่ลิงก์ในปุ่ม fallback ===
+    const btn = document.getElementById("openAppBtn");
+    btn.href = intentUrl;
+
+    // === พยายามเปิดแอปอัตโนมัติ ===
+    setTimeout(() => {
+      window.location.href = intentUrl;
+    }, 500);
   </script>
 </body>
 </html>
