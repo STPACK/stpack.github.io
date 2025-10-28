@@ -42,27 +42,6 @@
   <a id="openAppBtn" href="#">Open HelpYourself App</a>
   <p class="small">If you don’t have the app installed, nothing will happen.</p>
 
-  <script>
-    // === อ่านค่า token และ email จาก query ===
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token") || "";
-    const email = params.get("email") || "";
 
-    // === เข้ารหัสค่าเพื่อความปลอดภัย ===
-    const encodedToken = encodeURIComponent(token);
-    const encodedEmail = encodeURIComponent(email);
-
-    // === สร้าง intent:// URL ===
-    const intentUrl = `intent://email-verified?token=${encodedToken}&email=${encodedEmail}#Intent;scheme=https;package=com.sennalabs.helpyourself;end`;
-
-    // === ใส่ลิงก์ในปุ่ม fallback ===
-    const btn = document.getElementById("openAppBtn");
-    btn.href = intentUrl;
-
-    // === พยายามเปิดแอปอัตโนมัติ ===
-    setTimeout(() => {
-      window.location.href = intentUrl;
-    }, 500);
-  </script>
 </body>
 </html>
